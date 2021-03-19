@@ -29,14 +29,11 @@ namespace WreckageNavelCombat
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.playerScore = new System.Windows.Forms.Label();
             this.enemyScore = new System.Windows.Forms.Label();
             this.enemyMoves = new System.Windows.Forms.Label();
             this.roundsText = new System.Windows.Forms.Label();
             this.helpText = new System.Windows.Forms.Label();
-            this.enemyLocationList = new System.Windows.Forms.ComboBox();
-            this.attackButton = new System.Windows.Forms.Button();
             this.playerWins = new System.Windows.Forms.Label();
             this.playerLosses = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
@@ -142,8 +139,6 @@ namespace WreckageNavelCombat
             this.z4 = new System.Windows.Forms.Button();
             this.z3 = new System.Windows.Forms.Button();
             this.z2 = new System.Windows.Forms.Button();
-            this.enemyPlayTimer = new System.Windows.Forms.Timer(this.components);
-            this.enemyPositionPicker = new System.Windows.Forms.Timer(this.components);
             this.j2 = new System.Windows.Forms.Button();
             this.j3 = new System.Windows.Forms.Button();
             this.j4 = new System.Windows.Forms.Button();
@@ -288,7 +283,7 @@ namespace WreckageNavelCombat
             this.roundsText.Name = "roundsText";
             this.roundsText.Size = new System.Drawing.Size(46, 31);
             this.roundsText.TabIndex = 3;
-            this.roundsText.Text = "00";            
+            this.roundsText.Text = "00";
             // 
             // helpText
             // 
@@ -302,30 +297,6 @@ namespace WreckageNavelCombat
             this.helpText.TabIndex = 4;
             this.helpText.Text = "Press Play to begin";
             this.helpText.Click += new System.EventHandler(this.playerPicksPosition);
-            // 
-            // enemyLocationList
-            // 
-            this.enemyLocationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.enemyLocationList.DropDownWidth = 95;
-            this.enemyLocationList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enemyLocationList.FormattingEnabled = true;
-            this.enemyLocationList.Location = new System.Drawing.Point(90, 679);
-            this.enemyLocationList.Name = "enemyLocationList";
-            this.enemyLocationList.Size = new System.Drawing.Size(45, 28);
-            this.enemyLocationList.TabIndex = 5;
-            // 
-            // attackButton
-            // 
-            this.attackButton.BackColor = System.Drawing.Color.Transparent;
-            this.attackButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.attackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attackButton.Location = new System.Drawing.Point(95, 600);
-            this.attackButton.Name = "attackButton";
-            this.attackButton.Size = new System.Drawing.Size(65, 35);
-            this.attackButton.TabIndex = 6;
-            this.attackButton.Text = "Attack";
-            this.attackButton.UseVisualStyleBackColor = false;
-            this.attackButton.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // playerWins
             // 
@@ -380,6 +351,7 @@ namespace WreckageNavelCombat
             this.playAgainButton.TabIndex = 11;
             this.playAgainButton.Text = "Play Again";
             this.playAgainButton.UseVisualStyleBackColor = false;
+            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
             // 
             // q1
             // 
@@ -1580,17 +1552,6 @@ namespace WreckageNavelCombat
             this.z2.UseVisualStyleBackColor = false;
             this.z2.Click += new System.EventHandler(this.playerPicksPosition);
             // 
-            // enemyPlayTimer
-            // 
-            this.enemyPlayTimer.Interval = 1000;
-            this.enemyPlayTimer.Tick += new System.EventHandler(this.enemyAttackPlayer);
-            // 
-            // enemyPositionPicker
-            // 
-            this.enemyPositionPicker.Enabled = true;
-            this.enemyPositionPicker.Interval = 500;
-            this.enemyPositionPicker.Tick += new System.EventHandler(this.enemyPickPosition);
-            // 
             // j2
             // 
             this.j2.BackColor = System.Drawing.Color.Transparent;
@@ -1601,6 +1562,7 @@ namespace WreckageNavelCombat
             this.j2.TabIndex = 311;
             this.j2.Text = "J2";
             this.j2.UseVisualStyleBackColor = false;
+            this.j2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j3
             // 
@@ -1612,6 +1574,7 @@ namespace WreckageNavelCombat
             this.j3.TabIndex = 310;
             this.j3.Text = "J3";
             this.j3.UseVisualStyleBackColor = false;
+            this.j3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j4
             // 
@@ -1623,6 +1586,7 @@ namespace WreckageNavelCombat
             this.j4.TabIndex = 309;
             this.j4.Text = "J4";
             this.j4.UseVisualStyleBackColor = false;
+            this.j4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j5
             // 
@@ -1634,6 +1598,7 @@ namespace WreckageNavelCombat
             this.j5.TabIndex = 308;
             this.j5.Text = "J5";
             this.j5.UseVisualStyleBackColor = false;
+            this.j5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j6
             // 
@@ -1645,6 +1610,7 @@ namespace WreckageNavelCombat
             this.j6.TabIndex = 307;
             this.j6.Text = "J6";
             this.j6.UseVisualStyleBackColor = false;
+            this.j6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j7
             // 
@@ -1656,6 +1622,7 @@ namespace WreckageNavelCombat
             this.j7.TabIndex = 306;
             this.j7.Text = "J7";
             this.j7.UseVisualStyleBackColor = false;
+            this.j7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j8
             // 
@@ -1667,6 +1634,7 @@ namespace WreckageNavelCombat
             this.j8.TabIndex = 305;
             this.j8.Text = "J8";
             this.j8.UseVisualStyleBackColor = false;
+            this.j8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j9
             // 
@@ -1678,6 +1646,7 @@ namespace WreckageNavelCombat
             this.j9.TabIndex = 304;
             this.j9.Text = "J9";
             this.j9.UseVisualStyleBackColor = false;
+            this.j9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j10
             // 
@@ -1689,6 +1658,7 @@ namespace WreckageNavelCombat
             this.j10.TabIndex = 303;
             this.j10.Text = "J10";
             this.j10.UseVisualStyleBackColor = false;
+            this.j10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i10
             // 
@@ -1700,6 +1670,7 @@ namespace WreckageNavelCombat
             this.i10.TabIndex = 302;
             this.i10.Text = "I10";
             this.i10.UseVisualStyleBackColor = false;
+            this.i10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i9
             // 
@@ -1711,6 +1682,7 @@ namespace WreckageNavelCombat
             this.i9.TabIndex = 301;
             this.i9.Text = "I9";
             this.i9.UseVisualStyleBackColor = false;
+            this.i9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i8
             // 
@@ -1722,6 +1694,7 @@ namespace WreckageNavelCombat
             this.i8.TabIndex = 300;
             this.i8.Text = "I8";
             this.i8.UseVisualStyleBackColor = false;
+            this.i8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i7
             // 
@@ -1733,6 +1706,7 @@ namespace WreckageNavelCombat
             this.i7.TabIndex = 299;
             this.i7.Text = "I7";
             this.i7.UseVisualStyleBackColor = false;
+            this.i7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i6
             // 
@@ -1744,6 +1718,7 @@ namespace WreckageNavelCombat
             this.i6.TabIndex = 298;
             this.i6.Text = "I6";
             this.i6.UseVisualStyleBackColor = false;
+            this.i6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i5
             // 
@@ -1755,6 +1730,7 @@ namespace WreckageNavelCombat
             this.i5.TabIndex = 297;
             this.i5.Text = "I5";
             this.i5.UseVisualStyleBackColor = false;
+            this.i5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i4
             // 
@@ -1766,6 +1742,7 @@ namespace WreckageNavelCombat
             this.i4.TabIndex = 296;
             this.i4.Text = "I4";
             this.i4.UseVisualStyleBackColor = false;
+            this.i4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i3
             // 
@@ -1777,6 +1754,7 @@ namespace WreckageNavelCombat
             this.i3.TabIndex = 295;
             this.i3.Text = "I3";
             this.i3.UseVisualStyleBackColor = false;
+            this.i3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i2
             // 
@@ -1788,6 +1766,7 @@ namespace WreckageNavelCombat
             this.i2.TabIndex = 294;
             this.i2.Text = "I2";
             this.i2.UseVisualStyleBackColor = false;
+            this.i2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h2
             // 
@@ -1799,6 +1778,7 @@ namespace WreckageNavelCombat
             this.h2.TabIndex = 293;
             this.h2.Text = "H2";
             this.h2.UseVisualStyleBackColor = false;
+            this.h2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h3
             // 
@@ -1810,6 +1790,7 @@ namespace WreckageNavelCombat
             this.h3.TabIndex = 292;
             this.h3.Text = "H3";
             this.h3.UseVisualStyleBackColor = false;
+            this.h3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h4
             // 
@@ -1821,6 +1802,7 @@ namespace WreckageNavelCombat
             this.h4.TabIndex = 291;
             this.h4.Text = "H4";
             this.h4.UseVisualStyleBackColor = false;
+            this.h4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h5
             // 
@@ -1832,6 +1814,7 @@ namespace WreckageNavelCombat
             this.h5.TabIndex = 290;
             this.h5.Text = "H5";
             this.h5.UseVisualStyleBackColor = false;
+            this.h5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h6
             // 
@@ -1843,6 +1826,7 @@ namespace WreckageNavelCombat
             this.h6.TabIndex = 289;
             this.h6.Text = "H6";
             this.h6.UseVisualStyleBackColor = false;
+            this.h6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h7
             // 
@@ -1854,6 +1838,7 @@ namespace WreckageNavelCombat
             this.h7.TabIndex = 288;
             this.h7.Text = "H7";
             this.h7.UseVisualStyleBackColor = false;
+            this.h7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h8
             // 
@@ -1865,6 +1850,7 @@ namespace WreckageNavelCombat
             this.h8.TabIndex = 287;
             this.h8.Text = "H8";
             this.h8.UseVisualStyleBackColor = false;
+            this.h8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h9
             // 
@@ -1876,6 +1862,7 @@ namespace WreckageNavelCombat
             this.h9.TabIndex = 286;
             this.h9.Text = "H9";
             this.h9.UseVisualStyleBackColor = false;
+            this.h9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h10
             // 
@@ -1887,6 +1874,7 @@ namespace WreckageNavelCombat
             this.h10.TabIndex = 285;
             this.h10.Text = "H10";
             this.h10.UseVisualStyleBackColor = false;
+            this.h10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g10
             // 
@@ -1898,6 +1886,7 @@ namespace WreckageNavelCombat
             this.g10.TabIndex = 284;
             this.g10.Text = "G10";
             this.g10.UseVisualStyleBackColor = false;
+            this.g10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g9
             // 
@@ -1909,6 +1898,7 @@ namespace WreckageNavelCombat
             this.g9.TabIndex = 283;
             this.g9.Text = "G9";
             this.g9.UseVisualStyleBackColor = false;
+            this.g9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g8
             // 
@@ -1920,6 +1910,7 @@ namespace WreckageNavelCombat
             this.g8.TabIndex = 282;
             this.g8.Text = "G8";
             this.g8.UseVisualStyleBackColor = false;
+            this.g8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g7
             // 
@@ -1931,6 +1922,7 @@ namespace WreckageNavelCombat
             this.g7.TabIndex = 281;
             this.g7.Text = "G7";
             this.g7.UseVisualStyleBackColor = false;
+            this.g7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g6
             // 
@@ -1942,6 +1934,7 @@ namespace WreckageNavelCombat
             this.g6.TabIndex = 280;
             this.g6.Text = "G6";
             this.g6.UseVisualStyleBackColor = false;
+            this.g6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g5
             // 
@@ -1953,6 +1946,7 @@ namespace WreckageNavelCombat
             this.g5.TabIndex = 279;
             this.g5.Text = "G5";
             this.g5.UseVisualStyleBackColor = false;
+            this.g5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g4
             // 
@@ -1964,6 +1958,7 @@ namespace WreckageNavelCombat
             this.g4.TabIndex = 278;
             this.g4.Text = "G4";
             this.g4.UseVisualStyleBackColor = false;
+            this.g4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g3
             // 
@@ -1975,6 +1970,7 @@ namespace WreckageNavelCombat
             this.g3.TabIndex = 277;
             this.g3.Text = "G3";
             this.g3.UseVisualStyleBackColor = false;
+            this.g3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g2
             // 
@@ -1986,6 +1982,7 @@ namespace WreckageNavelCombat
             this.g2.TabIndex = 276;
             this.g2.Text = "G2";
             this.g2.UseVisualStyleBackColor = false;
+            this.g2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f10
             // 
@@ -1997,6 +1994,7 @@ namespace WreckageNavelCombat
             this.f10.TabIndex = 275;
             this.f10.Text = "F10";
             this.f10.UseVisualStyleBackColor = false;
+            this.f10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f9
             // 
@@ -2008,6 +2006,7 @@ namespace WreckageNavelCombat
             this.f9.TabIndex = 274;
             this.f9.Text = "F9";
             this.f9.UseVisualStyleBackColor = false;
+            this.f9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f8
             // 
@@ -2019,6 +2018,7 @@ namespace WreckageNavelCombat
             this.f8.TabIndex = 273;
             this.f8.Text = "F8";
             this.f8.UseVisualStyleBackColor = false;
+            this.f8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f7
             // 
@@ -2030,6 +2030,7 @@ namespace WreckageNavelCombat
             this.f7.TabIndex = 272;
             this.f7.Text = "F7";
             this.f7.UseVisualStyleBackColor = false;
+            this.f7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f6
             // 
@@ -2041,6 +2042,7 @@ namespace WreckageNavelCombat
             this.f6.TabIndex = 271;
             this.f6.Text = "F6";
             this.f6.UseVisualStyleBackColor = false;
+            this.f6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f5
             // 
@@ -2052,6 +2054,7 @@ namespace WreckageNavelCombat
             this.f5.TabIndex = 270;
             this.f5.Text = "F5";
             this.f5.UseVisualStyleBackColor = false;
+            this.f5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f4
             // 
@@ -2063,6 +2066,7 @@ namespace WreckageNavelCombat
             this.f4.TabIndex = 269;
             this.f4.Text = "F4";
             this.f4.UseVisualStyleBackColor = false;
+            this.f4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f3
             // 
@@ -2074,6 +2078,7 @@ namespace WreckageNavelCombat
             this.f3.TabIndex = 268;
             this.f3.Text = "F3";
             this.f3.UseVisualStyleBackColor = false;
+            this.f3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f2
             // 
@@ -2085,6 +2090,7 @@ namespace WreckageNavelCombat
             this.f2.TabIndex = 267;
             this.f2.Text = "F2";
             this.f2.UseVisualStyleBackColor = false;
+            this.f2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e10
             // 
@@ -2096,6 +2102,7 @@ namespace WreckageNavelCombat
             this.e10.TabIndex = 266;
             this.e10.Text = "E10";
             this.e10.UseVisualStyleBackColor = false;
+            this.e10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e9
             // 
@@ -2107,6 +2114,7 @@ namespace WreckageNavelCombat
             this.e9.TabIndex = 265;
             this.e9.Text = "E9";
             this.e9.UseVisualStyleBackColor = false;
+            this.e9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e8
             // 
@@ -2118,6 +2126,7 @@ namespace WreckageNavelCombat
             this.e8.TabIndex = 264;
             this.e8.Text = "E8";
             this.e8.UseVisualStyleBackColor = false;
+            this.e8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e7
             // 
@@ -2129,6 +2138,7 @@ namespace WreckageNavelCombat
             this.e7.TabIndex = 263;
             this.e7.Text = "E7";
             this.e7.UseVisualStyleBackColor = false;
+            this.e7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e6
             // 
@@ -2140,6 +2150,7 @@ namespace WreckageNavelCombat
             this.e6.TabIndex = 262;
             this.e6.Text = "E6";
             this.e6.UseVisualStyleBackColor = false;
+            this.e6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e5
             // 
@@ -2151,6 +2162,7 @@ namespace WreckageNavelCombat
             this.e5.TabIndex = 261;
             this.e5.Text = "E5";
             this.e5.UseVisualStyleBackColor = false;
+            this.e5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e4
             // 
@@ -2162,6 +2174,7 @@ namespace WreckageNavelCombat
             this.e4.TabIndex = 260;
             this.e4.Text = "E4";
             this.e4.UseVisualStyleBackColor = false;
+            this.e4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e3
             // 
@@ -2173,6 +2186,7 @@ namespace WreckageNavelCombat
             this.e3.TabIndex = 259;
             this.e3.Text = "E3";
             this.e3.UseVisualStyleBackColor = false;
+            this.e3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e2
             // 
@@ -2184,6 +2198,7 @@ namespace WreckageNavelCombat
             this.e2.TabIndex = 258;
             this.e2.Text = "E2";
             this.e2.UseVisualStyleBackColor = false;
+            this.e2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d10
             // 
@@ -2195,6 +2210,7 @@ namespace WreckageNavelCombat
             this.d10.TabIndex = 257;
             this.d10.Text = "D10";
             this.d10.UseVisualStyleBackColor = false;
+            this.d10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d9
             // 
@@ -2206,6 +2222,7 @@ namespace WreckageNavelCombat
             this.d9.TabIndex = 256;
             this.d9.Text = "D9";
             this.d9.UseVisualStyleBackColor = false;
+            this.d9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d8
             // 
@@ -2217,6 +2234,7 @@ namespace WreckageNavelCombat
             this.d8.TabIndex = 255;
             this.d8.Text = "D8";
             this.d8.UseVisualStyleBackColor = false;
+            this.d8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d7
             // 
@@ -2228,6 +2246,7 @@ namespace WreckageNavelCombat
             this.d7.TabIndex = 254;
             this.d7.Text = "D7";
             this.d7.UseVisualStyleBackColor = false;
+            this.d7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d6
             // 
@@ -2239,6 +2258,7 @@ namespace WreckageNavelCombat
             this.d6.TabIndex = 253;
             this.d6.Text = "D6";
             this.d6.UseVisualStyleBackColor = false;
+            this.d6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d5
             // 
@@ -2250,6 +2270,7 @@ namespace WreckageNavelCombat
             this.d5.TabIndex = 252;
             this.d5.Text = "D5";
             this.d5.UseVisualStyleBackColor = false;
+            this.d5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d4
             // 
@@ -2261,6 +2282,7 @@ namespace WreckageNavelCombat
             this.d4.TabIndex = 251;
             this.d4.Text = "D4";
             this.d4.UseVisualStyleBackColor = false;
+            this.d4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d3
             // 
@@ -2272,6 +2294,7 @@ namespace WreckageNavelCombat
             this.d3.TabIndex = 250;
             this.d3.Text = "D3";
             this.d3.UseVisualStyleBackColor = false;
+            this.d3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d2
             // 
@@ -2283,6 +2306,7 @@ namespace WreckageNavelCombat
             this.d2.TabIndex = 249;
             this.d2.Text = "D2";
             this.d2.UseVisualStyleBackColor = false;
+            this.d2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c10
             // 
@@ -2294,6 +2318,7 @@ namespace WreckageNavelCombat
             this.c10.TabIndex = 248;
             this.c10.Text = "C10";
             this.c10.UseVisualStyleBackColor = false;
+            this.c10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c9
             // 
@@ -2305,6 +2330,7 @@ namespace WreckageNavelCombat
             this.c9.TabIndex = 247;
             this.c9.Text = "C9";
             this.c9.UseVisualStyleBackColor = false;
+            this.c9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c8
             // 
@@ -2316,6 +2342,7 @@ namespace WreckageNavelCombat
             this.c8.TabIndex = 246;
             this.c8.Text = "C8";
             this.c8.UseVisualStyleBackColor = false;
+            this.c8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c7
             // 
@@ -2327,6 +2354,7 @@ namespace WreckageNavelCombat
             this.c7.TabIndex = 245;
             this.c7.Text = "C7";
             this.c7.UseVisualStyleBackColor = false;
+            this.c7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c6
             // 
@@ -2338,6 +2366,7 @@ namespace WreckageNavelCombat
             this.c6.TabIndex = 244;
             this.c6.Text = "C6";
             this.c6.UseVisualStyleBackColor = false;
+            this.c6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c5
             // 
@@ -2349,6 +2378,7 @@ namespace WreckageNavelCombat
             this.c5.TabIndex = 243;
             this.c5.Text = "C5";
             this.c5.UseVisualStyleBackColor = false;
+            this.c5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c4
             // 
@@ -2360,6 +2390,7 @@ namespace WreckageNavelCombat
             this.c4.TabIndex = 242;
             this.c4.Text = "C4";
             this.c4.UseVisualStyleBackColor = false;
+            this.c4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c3
             // 
@@ -2371,6 +2402,7 @@ namespace WreckageNavelCombat
             this.c3.TabIndex = 241;
             this.c3.Text = "C3";
             this.c3.UseVisualStyleBackColor = false;
+            this.c3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c2
             // 
@@ -2382,6 +2414,7 @@ namespace WreckageNavelCombat
             this.c2.TabIndex = 240;
             this.c2.Text = "C2";
             this.c2.UseVisualStyleBackColor = false;
+            this.c2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b10
             // 
@@ -2393,6 +2426,7 @@ namespace WreckageNavelCombat
             this.b10.TabIndex = 239;
             this.b10.Text = "B10";
             this.b10.UseVisualStyleBackColor = false;
+            this.b10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b9
             // 
@@ -2404,6 +2438,7 @@ namespace WreckageNavelCombat
             this.b9.TabIndex = 238;
             this.b9.Text = "B9";
             this.b9.UseVisualStyleBackColor = false;
+            this.b9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b8
             // 
@@ -2415,6 +2450,7 @@ namespace WreckageNavelCombat
             this.b8.TabIndex = 237;
             this.b8.Text = "B8";
             this.b8.UseVisualStyleBackColor = false;
+            this.b8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b7
             // 
@@ -2426,6 +2462,7 @@ namespace WreckageNavelCombat
             this.b7.TabIndex = 236;
             this.b7.Text = "B7";
             this.b7.UseVisualStyleBackColor = false;
+            this.b7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b6
             // 
@@ -2437,6 +2474,7 @@ namespace WreckageNavelCombat
             this.b6.TabIndex = 235;
             this.b6.Text = "B6";
             this.b6.UseVisualStyleBackColor = false;
+            this.b6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b5
             // 
@@ -2448,6 +2486,7 @@ namespace WreckageNavelCombat
             this.b5.TabIndex = 234;
             this.b5.Text = "B5";
             this.b5.UseVisualStyleBackColor = false;
+            this.b5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b4
             // 
@@ -2459,6 +2498,7 @@ namespace WreckageNavelCombat
             this.b4.TabIndex = 233;
             this.b4.Text = "B4";
             this.b4.UseVisualStyleBackColor = false;
+            this.b4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b3
             // 
@@ -2470,6 +2510,7 @@ namespace WreckageNavelCombat
             this.b3.TabIndex = 232;
             this.b3.Text = "B3";
             this.b3.UseVisualStyleBackColor = false;
+            this.b3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b2
             // 
@@ -2481,6 +2522,7 @@ namespace WreckageNavelCombat
             this.b2.TabIndex = 231;
             this.b2.Text = "B2";
             this.b2.UseVisualStyleBackColor = false;
+            this.b2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a10
             // 
@@ -2491,6 +2533,7 @@ namespace WreckageNavelCombat
             this.a10.TabIndex = 230;
             this.a10.Text = "A10";
             this.a10.UseVisualStyleBackColor = true;
+            this.a10.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a9
             // 
@@ -2502,6 +2545,7 @@ namespace WreckageNavelCombat
             this.a9.TabIndex = 229;
             this.a9.Text = "A9";
             this.a9.UseVisualStyleBackColor = false;
+            this.a9.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a8
             // 
@@ -2513,6 +2557,7 @@ namespace WreckageNavelCombat
             this.a8.TabIndex = 228;
             this.a8.Text = "A8";
             this.a8.UseVisualStyleBackColor = false;
+            this.a8.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a7
             // 
@@ -2524,6 +2569,7 @@ namespace WreckageNavelCombat
             this.a7.TabIndex = 227;
             this.a7.Text = "A7";
             this.a7.UseVisualStyleBackColor = false;
+            this.a7.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a6
             // 
@@ -2535,6 +2581,7 @@ namespace WreckageNavelCombat
             this.a6.TabIndex = 226;
             this.a6.Text = "A6";
             this.a6.UseVisualStyleBackColor = false;
+            this.a6.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a5
             // 
@@ -2546,6 +2593,7 @@ namespace WreckageNavelCombat
             this.a5.TabIndex = 225;
             this.a5.Text = "A5";
             this.a5.UseVisualStyleBackColor = false;
+            this.a5.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a4
             // 
@@ -2557,6 +2605,7 @@ namespace WreckageNavelCombat
             this.a4.TabIndex = 224;
             this.a4.Text = "A4";
             this.a4.UseVisualStyleBackColor = false;
+            this.a4.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a3
             // 
@@ -2568,6 +2617,7 @@ namespace WreckageNavelCombat
             this.a3.TabIndex = 223;
             this.a3.Text = "A3";
             this.a3.UseVisualStyleBackColor = false;
+            this.a3.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a2
             // 
@@ -2579,6 +2629,7 @@ namespace WreckageNavelCombat
             this.a2.TabIndex = 222;
             this.a2.Text = "A2";
             this.a2.UseVisualStyleBackColor = false;
+            this.a2.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // j1
             // 
@@ -2590,6 +2641,7 @@ namespace WreckageNavelCombat
             this.j1.TabIndex = 221;
             this.j1.Text = "J1";
             this.j1.UseVisualStyleBackColor = false;
+            this.j1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // i1
             // 
@@ -2601,6 +2653,7 @@ namespace WreckageNavelCombat
             this.i1.TabIndex = 220;
             this.i1.Text = "I1";
             this.i1.UseVisualStyleBackColor = false;
+            this.i1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // h1
             // 
@@ -2612,6 +2665,7 @@ namespace WreckageNavelCombat
             this.h1.TabIndex = 219;
             this.h1.Text = "H1";
             this.h1.UseVisualStyleBackColor = false;
+            this.h1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // g1
             // 
@@ -2623,6 +2677,7 @@ namespace WreckageNavelCombat
             this.g1.TabIndex = 218;
             this.g1.Text = "G1";
             this.g1.UseVisualStyleBackColor = false;
+            this.g1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // f1
             // 
@@ -2634,6 +2689,7 @@ namespace WreckageNavelCombat
             this.f1.TabIndex = 217;
             this.f1.Text = "F1";
             this.f1.UseVisualStyleBackColor = false;
+            this.f1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // e1
             // 
@@ -2645,6 +2701,7 @@ namespace WreckageNavelCombat
             this.e1.TabIndex = 216;
             this.e1.Text = "E1";
             this.e1.UseVisualStyleBackColor = false;
+            this.e1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // d1
             // 
@@ -2656,6 +2713,7 @@ namespace WreckageNavelCombat
             this.d1.TabIndex = 215;
             this.d1.Text = "D1";
             this.d1.UseVisualStyleBackColor = false;
+            this.d1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // c1
             // 
@@ -2667,6 +2725,7 @@ namespace WreckageNavelCombat
             this.c1.TabIndex = 214;
             this.c1.Text = "C1";
             this.c1.UseVisualStyleBackColor = false;
+            this.c1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // b1
             // 
@@ -2678,6 +2737,7 @@ namespace WreckageNavelCombat
             this.b1.TabIndex = 213;
             this.b1.Text = "B1";
             this.b1.UseVisualStyleBackColor = false;
+            this.b1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // a1
             // 
@@ -2689,6 +2749,7 @@ namespace WreckageNavelCombat
             this.a1.TabIndex = 212;
             this.a1.Text = "A1";
             this.a1.UseVisualStyleBackColor = false;
+            this.a1.Click += new System.EventHandler(this.attackEnemyPosition);
             // 
             // Wreckage
             // 
@@ -2902,8 +2963,6 @@ namespace WreckageNavelCombat
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.playerLosses);
             this.Controls.Add(this.playerWins);
-            this.Controls.Add(this.attackButton);
-            this.Controls.Add(this.enemyLocationList);
             this.Controls.Add(this.helpText);
             this.Controls.Add(this.roundsText);
             this.Controls.Add(this.enemyMoves);
@@ -2923,8 +2982,6 @@ namespace WreckageNavelCombat
         private System.Windows.Forms.Label enemyMoves;
         private System.Windows.Forms.Label roundsText;
         private System.Windows.Forms.Label helpText;
-        private System.Windows.Forms.ComboBox enemyLocationList;
-        private System.Windows.Forms.Button attackButton;
         private System.Windows.Forms.Label playerWins;
         private System.Windows.Forms.Label playerLosses;
         private System.Windows.Forms.Button playButton;
@@ -3030,8 +3087,6 @@ namespace WreckageNavelCombat
         private System.Windows.Forms.Button z4;
         private System.Windows.Forms.Button z3;
         private System.Windows.Forms.Button z2;
-        private System.Windows.Forms.Timer enemyPlayTimer;
-        private System.Windows.Forms.Timer enemyPositionPicker;
         private System.Windows.Forms.Button j2;
         private System.Windows.Forms.Button j3;
         private System.Windows.Forms.Button j4;

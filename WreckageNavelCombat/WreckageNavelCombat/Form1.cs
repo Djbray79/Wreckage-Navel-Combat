@@ -14,22 +14,26 @@ namespace WreckageNavelCombat
 {
     public partial class Wreckage : Form
     {
+        int totalWins = 0;
+        int totalLosses = 0;        
         List<Button> playerPosition;
         List<Button> enemyPosition;
         Random rand = new Random();
+
+        
         int totalShips = 5;
         int totalEnemy = 5;
         int rounds = 0;
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
-        int totalWins = 0;
-        int totalLosses = 0;
+
+        //private object enemyPositionPicker;
+
 
         public Wreckage()
         {
             InitializeComponent();
             loadbuttons();
-            attackButton.Enabled = false;
             enemyLocationList.Text = null;
         }
 
@@ -65,7 +69,7 @@ namespace WreckageNavelCombat
             for (int i = 0; i < enemyPosition.Count; i++)
             {
                 enemyPosition[i].Tag = null;
-                enemyLocationList.Items.Add(enemyPosition[i].Text);
+                enemyLocationList.Add(enemyPosition[i].Text);
             }
         }
 
@@ -81,13 +85,11 @@ namespace WreckageNavelCombat
             }
             if (totalShips == 0)
             {
-                attackButton.Enabled = true;
-                attackButton.BackColor = System.Drawing.Color.Red;
-                helpText.Text = "2: Now pick a attack position from the drop down menu.";
+                helpText.Text = "2: Now pick a attack position from the top grid.";
             }
         }
 
-        private void enemyPickPosition(object sender, EventArgs e)
+        private void enemyPickPosition()
         {
             int index = rand.Next(enemyPosition.Count);
 
@@ -104,43 +106,31 @@ namespace WreckageNavelCombat
             }
             if (totalEnemy < 1)
             {
-                enemyPositionPicker.Stop();
+                return;
             }
         }
 
         private void attackEnemyPosition(object sender, EventArgs e)
-        {
-            if (enemyLocationList.Text != "")
-            {
-                var attackPos = enemyLocationList.Text;
-                attackPos = attackPos.ToLower();
-                int index = enemyPosition.FindIndex(a => a.Name == attackPos);
-                if (enemyPosition[index].Enabled)
-                {                   
-                    if (enemyPosition[index].Tag == "enemyShip")
-                    {
-                        enemyPosition[index].Enabled = false;
-                        enemyPosition[index].BackgroundImage = Properties.Resources.red;
-                        enemyPosition[index].BackColor = System.Drawing.Color.DarkBlue;
-                        playerTotalScore++;
-                        playerScore.Text = "" + playerTotalScore;
-                        enemyPlayTimer.Start();
-                    }
-                    else
-                    {
-                        enemyPosition[index].Enabled = false;
-                        enemyPosition[index].BackgroundImage = Properties.Resources.white;
-                        enemyPosition[index].BackColor = System.Drawing.Color.DarkBlue;
-                        enemyPlayTimer.Start();
-                    }
+        {        
+            var attackPos = (Button)sender;                
+
+            if (attackPos.Enabled)
+            {                   
+                if (attackPos.Tag == "enemyShip")
+                {
+                    attackPos.Enabled = false;
+                    attackPos.BackColor = System.Drawing.Color.Red;
+                    playerTotalScore++;
+                    playerScore.Text = "" + playerTotalScore;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Choose a location from the drop down list.");
-            }
-        }
-        
+                else
+                {
+                    attackPos.Enabled = false;
+                    attackPos.BackColor = System.Drawing.Color.Gray;
+                }
+                enemyAttackPlayer(sender, e);
+            }            
+        }       
 
         private void enemyAttackPlayer(object sender, EventArgs e)
         {
@@ -154,23 +144,19 @@ namespace WreckageNavelCombat
 
                 if (playerPosition[index].Tag == "playerShip")
                 {
-                    playerPosition[index].BackgroundImage = Properties.Resources.red;
                     enemyMoves.Text = "" + playerPosition[index].Text;
                     playerPosition[index].Enabled = false;
-                    playerPosition[index].BackColor = System.Drawing.Color.DarkBlue;
+                    playerPosition[index].BackColor = System.Drawing.Color.Red;
                     playerPosition.RemoveAt(index);
                     enemyTotalScore++;
                     enemyScore.Text = "" + enemyTotalScore;
-                    enemyPlayTimer.Stop();
                 }
                 else
                 {
-                    playerPosition[index].BackgroundImage = Properties.Resources.white;
                     enemyMoves.Text = "" + playerPosition[index].Text;
                     playerPosition[index].Enabled = false;
-                    playerPosition[index].BackColor = System.Drawing.Color.DarkBlue;
+                    playerPosition[index].BackColor = System.Drawing.Color.Gray;
                     playerPosition.RemoveAt(index);
-                    enemyPlayTimer.Stop();
                 }
             }
 
@@ -179,6 +165,8 @@ namespace WreckageNavelCombat
                 if (playerTotalScore > enemyTotalScore)
                 {
                     MessageBox.Show("You Win", "Winning");
+                    totalWins++;
+                    playerWins.Text = "" + totalWins;
                 }
                 if (playerTotalScore == enemyTotalScore)
                 {
@@ -187,6 +175,8 @@ namespace WreckageNavelCombat
                 if (enemyTotalScore > playerTotalScore)
                 {
                     MessageBox.Show("Haha! I Sunk Your Battle Ship", "Lost");
+                    totalLosses++;
+                    playerLosses.Text = "" + totalLosses;
                 }
             }
         }        
@@ -195,5 +185,10 @@ namespace WreckageNavelCombat
         {
             this.Close();
         }
+
+        private void playAgainButton_Click(object sender, EventArgs e)
+        {
+            ;
+        }         
     }
 }
