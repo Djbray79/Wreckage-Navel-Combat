@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Diagnostics;
+using static WreckageNavelCombat.enemyLocationLists;
 
 namespace WreckageNavelCombat
 {
@@ -26,7 +27,7 @@ namespace WreckageNavelCombat
         int rounds = 0;
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
-
+        List<enemyLocationLists> enemyLocationList = new enemyLocationList();
         //private object enemyPositionPicker;
 
 
@@ -69,7 +70,7 @@ namespace WreckageNavelCombat
             for (int i = 0; i < enemyPosition.Count; i++)
             {
                 enemyPosition[i].Tag = null;
-                enemyLocationList.Add(enemyPosition[i].Text);
+                enemyLocationList.Text.Add(enemyPosition[i].Text);
             }
         }
 
@@ -89,7 +90,7 @@ namespace WreckageNavelCombat
             }
         }
 
-        private void enemyPickPosition()
+        private void enemyPickPosition(object sender, EventArgs e)
         {
             int index = rand.Next(enemyPosition.Count);
 
