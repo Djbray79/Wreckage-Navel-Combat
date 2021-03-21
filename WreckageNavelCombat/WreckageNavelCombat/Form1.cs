@@ -7,10 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Diagnostics;
-using static WreckageNavelCombat.enemyLocationLists;
-
 namespace WreckageNavelCombat
 {
     public partial class Wreckage : Form
@@ -27,7 +24,7 @@ namespace WreckageNavelCombat
         int rounds = 0;
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
-        List<enemyLocationLists> enemyLocationList = new enemyLocationList();
+        List<string> enemyLocationList = new List<string>();
         //private object enemyPositionPicker;
 
 
@@ -35,7 +32,7 @@ namespace WreckageNavelCombat
         {
             InitializeComponent();
             loadbuttons();
-            enemyLocationList.Text = null;
+            enemyLocationList = null;
         }
 
         private void loadbuttons()
@@ -70,8 +67,9 @@ namespace WreckageNavelCombat
             for (int i = 0; i < enemyPosition.Count; i++)
             {
                 enemyPosition[i].Tag = null;
-                enemyLocationList.Text.Add(enemyPosition[i].Text);
+                enemyLocationList.Add(enemyPosition[i].Text);
             }
+            Console.WriteLine(enemyLocationList);
         }
 
         private void playerPicksPosition(object sender, EventArgs e)
@@ -112,11 +110,11 @@ namespace WreckageNavelCombat
         }
 
         private void attackEnemyPosition(object sender, EventArgs e)
-        {        
-            var attackPos = (Button)sender;                
+        {            
+            var attackPos = (Button)sender;
 
             if (attackPos.Enabled)
-            {                   
+            {
                 if (attackPos.Tag == "enemyShip")
                 {
                     attackPos.Enabled = false;
