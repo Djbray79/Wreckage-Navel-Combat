@@ -24,14 +24,13 @@ namespace WreckageNavelCombat
         int rounds = 0;
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
-        List<string> enemyLocationList = new List<string>();
 
 
         public Wreckage()
         {
             InitializeComponent();
             loadbuttons();
-            enemyLocationList = null;
+            enemyPickPosition();
         }
 
         private void loadbuttons()
@@ -66,8 +65,6 @@ namespace WreckageNavelCombat
             for (int i = 0; i < enemyPosition.Count; i++)
             {
                 enemyPosition[i].Tag = null;
-                enemyLocationList.Add((string)enemyPosition[i].Tag);
-                 Console.WriteLine(enemyLocationList);
             }           
         }
 
@@ -87,36 +84,31 @@ namespace WreckageNavelCombat
             }
         }
 
-        private void enemyPickPosition(object sender, EventArgs e)
+        private void enemyPickPosition()
         {
             int index = rand.Next(enemyPosition.Count);
 
-            if (enemyPosition[index].Enabled == true && enemyPosition[index].Tag == null)
-            {
-                enemyPosition[index].Tag = "enemyShip";
-                totalEnemy--;
+            while (totalEnemy > 0)
+                if (enemyPosition[index].Enabled == true && enemyPosition[index].Tag == null)
+                {
+                    enemyPosition[index].Tag = "enemyShip";
+                    totalEnemy--;
 
-                Debug.WriteLine("Enemy Position  " + enemyPosition[index].Text);
-            }
-            else
-            {
-                index = rand.Next(enemyPosition.Count);
-            }
-            if (totalEnemy < 1)
-            {
-                return                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
-            }
+                    Debug.WriteLine("Enemy Position  " + enemyPosition[index].Text);
+                }
+                else
+                {
+                    index = rand.Next(enemyPosition.Count);
+                }
         }
 
         private void attackEnemyPosition(object sender, EventArgs e)
         {            
             var attackPos = (Button)sender;
-            //attackPos.Tag = enemyLocationList;
-            int index = enemyPosition.Count;
 
             if (attackPos.Enabled)
             {
-                if (enemyPosition[index].Tag == "enemyShip")
+                if (attackPos.Tag == "enemyShip")
                 {
                     attackPos.Enabled = false;
                     attackPos.BackColor = System.Drawing.Color.Red;
