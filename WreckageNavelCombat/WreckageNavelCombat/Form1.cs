@@ -25,7 +25,6 @@ namespace WreckageNavelCombat
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
         List<string> enemyLocationList = new List<string>();
-        //private object enemyPositionPicker;
 
 
         public Wreckage()
@@ -67,9 +66,9 @@ namespace WreckageNavelCombat
             for (int i = 0; i < enemyPosition.Count; i++)
             {
                 enemyPosition[i].Tag = null;
-                enemyLocationList.Add(enemyPosition[i].Text);
-            }
-            Console.WriteLine(enemyLocationList);
+                enemyLocationList.Add((string)enemyPosition[i].Tag);
+                 Console.WriteLine(enemyLocationList);
+            }           
         }
 
         private void playerPicksPosition(object sender, EventArgs e)
@@ -105,17 +104,19 @@ namespace WreckageNavelCombat
             }
             if (totalEnemy < 1)
             {
-                return;
+                return                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
             }
         }
 
         private void attackEnemyPosition(object sender, EventArgs e)
         {            
             var attackPos = (Button)sender;
+            //attackPos.Tag = enemyLocationList;
+            int index = enemyPosition.Count;
 
             if (attackPos.Enabled)
             {
-                if (attackPos.Tag == "enemyShip")
+                if (enemyPosition[index].Tag == "enemyShip")
                 {
                     attackPos.Enabled = false;
                     attackPos.BackColor = System.Drawing.Color.Red;
