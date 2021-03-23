@@ -36,7 +36,6 @@ namespace WreckageNavelCombat
             this.helpText = new System.Windows.Forms.Label();
             this.playerWins = new System.Windows.Forms.Label();
             this.playerLosses = new System.Windows.Forms.Label();
-            this.playButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
             this.playAgainButton = new System.Windows.Forms.Button();
             this.q1 = new System.Windows.Forms.Button();
@@ -246,7 +245,7 @@ namespace WreckageNavelCombat
             this.playerScore.AutoSize = true;
             this.playerScore.BackColor = System.Drawing.Color.Transparent;
             this.playerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playerScore.Location = new System.Drawing.Point(170, 770);
+            this.playerScore.Location = new System.Drawing.Point(180, 683);
             this.playerScore.Name = "playerScore";
             this.playerScore.Size = new System.Drawing.Size(38, 25);
             this.playerScore.TabIndex = 0;
@@ -268,7 +267,7 @@ namespace WreckageNavelCombat
             this.enemyMoves.AutoSize = true;
             this.enemyMoves.BackColor = System.Drawing.Color.Transparent;
             this.enemyMoves.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enemyMoves.Location = new System.Drawing.Point(730, 177);
+            this.enemyMoves.Location = new System.Drawing.Point(737, 169);
             this.enemyMoves.Name = "enemyMoves";
             this.enemyMoves.Size = new System.Drawing.Size(40, 25);
             this.enemyMoves.TabIndex = 2;
@@ -279,7 +278,7 @@ namespace WreckageNavelCombat
             this.roundsText.AutoSize = true;
             this.roundsText.BackColor = System.Drawing.Color.Transparent;
             this.roundsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundsText.Location = new System.Drawing.Point(729, 729);
+            this.roundsText.Location = new System.Drawing.Point(733, 683);
             this.roundsText.Name = "roundsText";
             this.roundsText.Size = new System.Drawing.Size(46, 31);
             this.roundsText.TabIndex = 3;
@@ -293,9 +292,9 @@ namespace WreckageNavelCombat
             this.helpText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.helpText.Location = new System.Drawing.Point(243, 421);
             this.helpText.Name = "helpText";
-            this.helpText.Size = new System.Drawing.Size(217, 25);
+            this.helpText.Size = new System.Drawing.Size(465, 25);
             this.helpText.TabIndex = 4;
-            this.helpText.Text = "Press Play to begin";
+            this.helpText.Text = "Choose your ship locations below to begin.";
             this.helpText.Click += new System.EventHandler(this.playerPicksPosition);
             // 
             // playerWins
@@ -303,7 +302,7 @@ namespace WreckageNavelCombat
             this.playerWins.AutoSize = true;
             this.playerWins.BackColor = System.Drawing.Color.Transparent;
             this.playerWins.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playerWins.Location = new System.Drawing.Point(156, 78);
+            this.playerWins.Location = new System.Drawing.Point(159, 80);
             this.playerWins.Name = "playerWins";
             this.playerWins.Size = new System.Drawing.Size(32, 24);
             this.playerWins.TabIndex = 7;
@@ -314,29 +313,18 @@ namespace WreckageNavelCombat
             this.playerLosses.AutoSize = true;
             this.playerLosses.BackColor = System.Drawing.Color.Transparent;
             this.playerLosses.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playerLosses.Location = new System.Drawing.Point(156, 133);
+            this.playerLosses.Location = new System.Drawing.Point(159, 133);
             this.playerLosses.Name = "playerLosses";
             this.playerLosses.Size = new System.Drawing.Size(32, 24);
             this.playerLosses.TabIndex = 8;
             this.playerLosses.Text = "00";
             // 
-            // playButton
-            // 
-            this.playButton.BackColor = System.Drawing.Color.Transparent;
-            this.playButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.playButton.Location = new System.Drawing.Point(690, 318);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(81, 45);
-            this.playButton.TabIndex = 9;
-            this.playButton.Text = "Play";
-            this.playButton.UseVisualStyleBackColor = false;
-            // 
             // quitButton
             // 
             this.quitButton.BackColor = System.Drawing.Color.Transparent;
-            this.quitButton.Location = new System.Drawing.Point(690, 432);
+            this.quitButton.Location = new System.Drawing.Point(660, 262);
             this.quitButton.Name = "quitButton";
-            this.quitButton.Size = new System.Drawing.Size(80, 45);
+            this.quitButton.Size = new System.Drawing.Size(98, 54);
             this.quitButton.TabIndex = 10;
             this.quitButton.Text = "Quit";
             this.quitButton.UseVisualStyleBackColor = false;
@@ -345,9 +333,9 @@ namespace WreckageNavelCombat
             // playAgainButton
             // 
             this.playAgainButton.BackColor = System.Drawing.Color.Transparent;
-            this.playAgainButton.Location = new System.Drawing.Point(49, 219);
+            this.playAgainButton.Location = new System.Drawing.Point(63, 262);
             this.playAgainButton.Name = "playAgainButton";
-            this.playAgainButton.Size = new System.Drawing.Size(60, 54);
+            this.playAgainButton.Size = new System.Drawing.Size(98, 54);
             this.playAgainButton.TabIndex = 11;
             this.playAgainButton.Text = "Play Again";
             this.playAgainButton.UseVisualStyleBackColor = false;
@@ -2755,7 +2743,7 @@ namespace WreckageNavelCombat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::WreckageNavelCombat.Properties.Resources.WreckageBackground2;
+            this.BackgroundImage = global::WreckageNavelCombat.Properties.Resources.WreckageBackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(799, 816);
             this.Controls.Add(this.j2);
@@ -2960,7 +2948,6 @@ namespace WreckageNavelCombat
             this.Controls.Add(this.q1);
             this.Controls.Add(this.playAgainButton);
             this.Controls.Add(this.quitButton);
-            this.Controls.Add(this.playButton);
             this.Controls.Add(this.playerLosses);
             this.Controls.Add(this.playerWins);
             this.Controls.Add(this.helpText);
@@ -2984,7 +2971,6 @@ namespace WreckageNavelCombat
         private System.Windows.Forms.Label helpText;
         private System.Windows.Forms.Label playerWins;
         private System.Windows.Forms.Label playerLosses;
-        private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button quitButton;
         private System.Windows.Forms.Button playAgainButton;
         private System.Windows.Forms.Button q1;

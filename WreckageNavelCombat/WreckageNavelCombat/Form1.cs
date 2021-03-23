@@ -180,7 +180,7 @@ namespace WreckageNavelCombat
 
         private void playAgainButton_Click(object sender, EventArgs e)
         {
-            ;
-        }         
+            Application.Restart();
+        }
     }
 }

@@ -8,10 +8,10 @@ namespace WreckageNavelCombat
 {
     internal class TotalScore
     {
-        List<TotalScore> totalScore = new List<TotalScore>()
-        {
-            //int totalWins = 0;
-            //int totalLosses = 0;
-        };
+        List<TotalScore> totalScore = new List<TotalScore>();
+       
+        //totalScore.Add(new TotalScore("totalWins", 0));
+        //totalScore.Add(new TotalScore("totalLosses", 0));
+        
     }
 }
