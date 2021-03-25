@@ -178,9 +178,45 @@ namespace WreckageNavelCombat
             this.Close();
         }
 
+        public void reset()
+        {
+
+            foreach (Control x in this.playerPosition)
+            {
+                if (x is Button)
+                {
+                    ((Button) x).Enabled = true;
+                    ((Button) x).Tag = "null";
+                    ((Button) x).BackColor = System.Drawing.Color.Transparent;
+                }
+            }
+
+            foreach (Control x in this.enemyPosition)
+            {
+                if (x is Button)
+                {
+                    ((Button)x).Enabled = true;
+                    ((Button)x).Tag = "null";
+                    ((Button)x).BackColor = System.Drawing.Color.Transparent;
+                }
+            }
+
+            foreach (Control y in this.Controls)
+            {
+                if (y is Label)
+                {
+                   
+                    //((Label)y).Text.Reset();
+                }
+            }
+        }
+
+
         private void playAgainButton_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+            reset();            
+            loadbuttons();
+            enemyPickPosition();            
         }
     }
 }
