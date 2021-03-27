@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+
 namespace WreckageNavelCombat
 {
     public partial class Wreckage : Form
@@ -18,9 +19,10 @@ namespace WreckageNavelCombat
         List<Button> enemyPosition;
         Random rand = new Random();
 
-        
+        int five = 5;
+        int zerro = 0;
         int totalShips = 5;
-        int totalEnemy = 5;
+        //int totalEnemy = 5;
         int rounds = 0;
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
@@ -33,7 +35,7 @@ namespace WreckageNavelCombat
             enemyPickPosition();
         }
 
-        private void loadbuttons()
+        public void loadbuttons()
         {
             playerPosition = new List<Button>
             {
@@ -86,6 +88,7 @@ namespace WreckageNavelCombat
 
         private void enemyPickPosition()
         {
+            int totalEnemy = five;
             int index = rand.Next(enemyPosition.Count);
 
             while (totalEnemy > 0)
@@ -199,24 +202,26 @@ namespace WreckageNavelCombat
                     ((Button)x).Tag = "null";
                     ((Button)x).BackColor = System.Drawing.Color.Transparent;
                 }
-            }
 
-            foreach (Control y in this.Controls)
-            {
-                if (y is Label)
-                {
-                   
-                    //((Label)y).Text.Reset();
-                }
+                enemyScore.Text = zerro.ToString();
+                roundsText.Text = zerro.ToString();
+                playerScore.Text = zerro.ToString();
+
+                totalShips =+ five;
+                //totalEnemy =+ five;
+
+                playerTotalScore = zerro;
+                enemyTotalScore = zerro;
+
             }
         }
 
 
         private void playAgainButton_Click(object sender, EventArgs e)
         {
-            reset();            
             loadbuttons();
-            enemyPickPosition();            
+            reset();           
+            enemyPickPosition();
         }
     }
 }
