@@ -21,11 +21,11 @@ namespace WreckageNavelCombat
 
         int five = 5;
         int zerro = 0;
-        int totalShips = 5;
-        //int totalEnemy = 5;
         int rounds = 0;
         int playerTotalScore = 0;
         int enemyTotalScore = 0;
+        int totalShips = 5;
+        int totalEnemy = 5;
 
 
         public Wreckage()
@@ -86,9 +86,8 @@ namespace WreckageNavelCombat
             }
         }
 
-        private void enemyPickPosition()
+        public void enemyPickPosition()
         {
-            int totalEnemy = five;
             int index = rand.Next(enemyPosition.Count);
 
             while (totalEnemy > 0)
@@ -98,11 +97,12 @@ namespace WreckageNavelCombat
                     totalEnemy--;
 
                     Debug.WriteLine("Enemy Position  " + enemyPosition[index].Text);
-                }
+                }                             
                 else
                 {
                     index = rand.Next(enemyPosition.Count);
-                }
+
+                }            
         }
 
         private void attackEnemyPosition(object sender, EventArgs e)
@@ -189,7 +189,7 @@ namespace WreckageNavelCombat
                 if (x is Button)
                 {
                     ((Button) x).Enabled = true;
-                    ((Button) x).Tag = "null";
+                    ((Button) x).Tag = null;
                     ((Button) x).BackColor = System.Drawing.Color.Transparent;
                 }
             }
@@ -199,7 +199,7 @@ namespace WreckageNavelCombat
                 if (x is Button)
                 {
                     ((Button)x).Enabled = true;
-                    ((Button)x).Tag = "null";
+                    ((Button)x).Tag = null;
                     ((Button)x).BackColor = System.Drawing.Color.Transparent;
                 }
 
@@ -208,10 +208,11 @@ namespace WreckageNavelCombat
                 playerScore.Text = zerro.ToString();
 
                 totalShips =+ five;
-                //totalEnemy =+ five;
+                totalEnemy =+ five;
 
                 playerTotalScore = zerro;
                 enemyTotalScore = zerro;
+                rounds = zerro;
 
             }
         }
@@ -220,7 +221,7 @@ namespace WreckageNavelCombat
         private void playAgainButton_Click(object sender, EventArgs e)
         {
             loadbuttons();
-            reset();           
+            reset();
             enemyPickPosition();
         }
     }
