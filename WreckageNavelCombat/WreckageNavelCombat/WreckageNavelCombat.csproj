@@ -59,7 +59,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TotalScore.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,6 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WreckageBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TotalScores.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

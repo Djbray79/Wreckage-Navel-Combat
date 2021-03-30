@@ -18,6 +18,9 @@ namespace WreckageNavelCombat
         List<Button> playerPosition;
         List<Button> enemyPosition;
         Random rand = new Random();
+        int allWins = 0;
+        int allLosses = 0;
+        int allDraws = 0;
 
         int five = 5;
         int zerro = 0;
@@ -33,6 +36,9 @@ namespace WreckageNavelCombat
             InitializeComponent();
             loadbuttons();
             enemyPickPosition();
+            var readAllScores = System.IO.File.ReadAllLines("TotalScores.txt");
+            readAllText();
+
         }
 
         public void loadbuttons()
@@ -82,7 +88,7 @@ namespace WreckageNavelCombat
             }
             if (totalShips == 0)
             {
-                helpText.Text = "2: Now pick a attack position from the top grid.";
+                helpText.Text = "Now pick an attack position from the top grid.";
             }
         }
 
@@ -162,16 +168,19 @@ namespace WreckageNavelCombat
                     MessageBox.Show("You Win", "Winning");
                     totalWins++;
                     playerWins.Text = "" + totalWins;
+                    System.IO.File.AppendAllLines("TotalScores.txt", new string[] { "Player" });
                 }
                 if (playerTotalScore == enemyTotalScore)
                 {
                     MessageBox.Show("No one wins this", "Draw");
+                    System.IO.File.AppendAllLines("TotalScores.txt", new string[] { "Draw" });
                 }
                 if (enemyTotalScore > playerTotalScore)
                 {
                     MessageBox.Show("Haha! I Sunk Your Battle Ship", "Lost");
                     totalLosses++;
                     playerLosses.Text = "" + totalLosses;
+                    System.IO.File.AppendAllLines("TotalScores.txt", new string[] { "AI" });
                 }
             }
         }        
@@ -203,6 +212,8 @@ namespace WreckageNavelCombat
                     ((Button)x).BackColor = System.Drawing.Color.Transparent;
                 }
 
+                helpText.Text = "Choose your ship locations below to begin.";
+
                 enemyScore.Text = zerro.ToString();
                 roundsText.Text = zerro.ToString();
                 playerScore.Text = zerro.ToString();
@@ -215,6 +226,33 @@ namespace WreckageNavelCombat
                 rounds = zerro;
 
             }
+        }
+
+        private void readAllText()
+        {
+            //var totalScores = System.IO.File.ReadAllLines("TotalScores.txt");
+            string[] totalScores = System.IO.File.ReadAllLines("TotalScores.txt");
+
+            foreach (string tScores in totalScores)
+            {
+                if (tScores == "Player")
+                    {
+                        allWins += 1;
+                    }
+                if (tScores == "AI")
+                {
+                    allLosses += 1;
+                }
+                if (tScores == "Draw")
+                {
+                    allDraws += 1;
+                }
+            }
+
+            Debug.WriteLine("Player Wins =  " + allWins);
+            Debug.WriteLine("AI Wins =  " + allLosses);
+            Debug.WriteLine("Draws =  " + allDraws);
+
         }
 
 
