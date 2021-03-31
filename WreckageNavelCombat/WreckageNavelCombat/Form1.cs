@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace WreckageNavelCombat
 {
@@ -36,7 +37,7 @@ namespace WreckageNavelCombat
             InitializeComponent();
             loadbuttons();
             enemyPickPosition();
-            var readAllScores = System.IO.File.ReadAllLines("TotalScores.txt");
+            var readAllScores = File.ReadAllLines("TotalScores.txt");
             readAllText();
 
         }
@@ -83,7 +84,7 @@ namespace WreckageNavelCombat
                 var button = (Button)sender;
                 button.Enabled = false;
                 button.Tag = "playerShip";
-                button.BackColor = System.Drawing.Color.Blue;
+                button.BackColor = Color.Blue;
                 totalShips--;
             }
             if (totalShips == 0)
@@ -120,14 +121,14 @@ namespace WreckageNavelCombat
                 if (attackPos.Tag == "enemyShip")
                 {
                     attackPos.Enabled = false;
-                    attackPos.BackColor = System.Drawing.Color.Red;
+                    attackPos.BackColor = Color.Red;
                     playerTotalScore++;
                     playerScore.Text = "" + playerTotalScore;
                 }
                 else
                 {
                     attackPos.Enabled = false;
-                    attackPos.BackColor = System.Drawing.Color.Gray;
+                    attackPos.BackColor = Color.Gray;
                 }
                 enemyAttackPlayer(sender, e);
             }            
@@ -147,7 +148,7 @@ namespace WreckageNavelCombat
                 {
                     enemyMoves.Text = "" + playerPosition[index].Text;
                     playerPosition[index].Enabled = false;
-                    playerPosition[index].BackColor = System.Drawing.Color.Red;
+                    playerPosition[index].BackColor = Color.Red;
                     playerPosition.RemoveAt(index);
                     enemyTotalScore++;
                     enemyScore.Text = "" + enemyTotalScore;
@@ -156,7 +157,7 @@ namespace WreckageNavelCombat
                 {
                     enemyMoves.Text = "" + playerPosition[index].Text;
                     playerPosition[index].Enabled = false;
-                    playerPosition[index].BackColor = System.Drawing.Color.Gray;
+                    playerPosition[index].BackColor = Color.Gray;
                     playerPosition.RemoveAt(index);
                 }
             }
@@ -168,19 +169,19 @@ namespace WreckageNavelCombat
                     MessageBox.Show("You Win", "Winning");
                     totalWins++;
                     playerWins.Text = "" + totalWins;
-                    System.IO.File.AppendAllLines("TotalScores.txt", new string[] { "Player" });
+                    File.AppendAllLines("TotalScores.txt", new string[] { "Player" });
                 }
                 if (playerTotalScore == enemyTotalScore)
                 {
                     MessageBox.Show("No one wins this", "Draw");
-                    System.IO.File.AppendAllLines("TotalScores.txt", new string[] { "Draw" });
+                    File.AppendAllLines("TotalScores.txt", new string[] { "Draw" });
                 }
                 if (enemyTotalScore > playerTotalScore)
                 {
                     MessageBox.Show("Haha! I Sunk Your Battle Ship", "Lost");
                     totalLosses++;
                     playerLosses.Text = "" + totalLosses;
-                    System.IO.File.AppendAllLines("TotalScores.txt", new string[] { "AI" });
+                    File.AppendAllLines("TotalScores.txt", new string[] { "AI" });
                 }
             }
         }        
@@ -199,7 +200,7 @@ namespace WreckageNavelCombat
                 {
                     ((Button) x).Enabled = true;
                     ((Button) x).Tag = null;
-                    ((Button) x).BackColor = System.Drawing.Color.Transparent;
+                    ((Button) x).BackColor = Color.Transparent;
                 }
             }
 
@@ -209,7 +210,7 @@ namespace WreckageNavelCombat
                 {
                     ((Button)x).Enabled = true;
                     ((Button)x).Tag = null;
-                    ((Button)x).BackColor = System.Drawing.Color.Transparent;
+                    ((Button)x).BackColor = Color.Transparent;
                 }
 
                 helpText.Text = "Choose your ship locations below to begin.";
@@ -230,8 +231,7 @@ namespace WreckageNavelCombat
 
         private void readAllText()
         {
-            //var totalScores = System.IO.File.ReadAllLines("TotalScores.txt");
-            string[] totalScores = System.IO.File.ReadAllLines("TotalScores.txt");
+            string[] totalScores = File.ReadAllLines("TotalScores.txt");
 
             foreach (string tScores in totalScores)
             {
