@@ -32,12 +32,11 @@ namespace WreckageNavelCombat
             InitializeComponent();
             loadbuttons();
             enemyPickPosition();
-            var readAllScores = File.ReadAllLines("TotalScores.txt");
             readAllText();
 
         }
 
-        public void loadbuttons()
+        public void loadbuttons()  //Creates the game board
         {
             playerPosition = new List<Button>
             {
@@ -186,7 +185,7 @@ namespace WreckageNavelCombat
             this.Close();
         }
 
-        public void reset()
+        public void reset()  //clears the game board, rounds, and scores
         {
 
             foreach (Control x in this.playerPosition)
@@ -256,6 +255,7 @@ namespace WreckageNavelCombat
             loadbuttons();
             reset();
             enemyPickPosition();
+            readAllText();
         }
     }
 }
